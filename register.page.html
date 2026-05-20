@@ -1,0 +1,86 @@
+<ion-content class="ion-padding">
+
+  <div class="register-container">
+    <!-- Logo -->
+    <div class="logo-section">
+      <div class="logo">
+        <img src="assets/zenith_focus_app_logo.png" alt="Zenith Focus" class="logo-img">
+      </div>
+      <h1>Zenith Focus</h1>
+      <p>Create Your Account</p>
+    </div>
+
+    <!-- Register Form -->
+    <div class="form-section">
+      <ion-item class="custom-input" [class.error]="nameError">
+        <ion-icon name="person-outline" slot="start" color="medium"></ion-icon>
+        <ion-input 
+          [(ngModel)]="fullName"
+          placeholder="Full Name"
+          type="text"
+          (ionInput)="clearErrors()">
+        </ion-input>
+      </ion-item>
+      <div class="error-text" *ngIf="nameError">{{ nameError }}</div>
+
+      <ion-item class="custom-input" [class.error]="emailError">
+        <ion-icon name="mail-outline" slot="start" color="medium"></ion-icon>
+        <ion-input 
+          [(ngModel)]="email"
+          placeholder="Email address"
+          type="email"
+          (ionInput)="clearErrors()">
+        </ion-input>
+      </ion-item>
+      <div class="error-text" *ngIf="emailError">{{ emailError }}</div>
+
+      <ion-item class="custom-input" [class.error]="passwordError">
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-input 
+          [(ngModel)]="password"
+          placeholder="Password"
+          [type]="showPassword ? 'text' : 'password'"
+          (ionInput)="clearErrors()">
+        </ion-input>
+        <ion-icon 
+          [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" 
+          slot="end" 
+          color="medium"
+          class="eye-icon"
+          (click)="togglePassword()">
+        </ion-icon>
+      </ion-item>
+      <div class="error-text" *ngIf="passwordError">{{ passwordError }}</div>
+
+      <ion-item class="custom-input" [class.error]="confirmError">
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-input 
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirm Password"
+          [type]="showConfirm ? 'text' : 'password'"
+          (ionInput)="clearErrors()">
+        </ion-input>
+        <ion-icon 
+          [name]="showConfirm ? 'eye-off-outline' : 'eye-outline'" 
+          slot="end" 
+          color="medium"
+          class="eye-icon"
+          (click)="toggleConfirm()">
+        </ion-icon>
+      </ion-item>
+      <div class="error-text" *ngIf="confirmError">{{ confirmError }}</div>
+
+      <!-- Register Button -->
+      <button class="register-btn" (click)="register()" [disabled]="isLoading">
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <span *ngIf="!isLoading">Create Account</span>
+      </button>
+
+      <!-- Back to Login -->
+      <button class="login-link-btn" (click)="goToLogin()">
+        Already have an account? Log In
+      </button>
+    </div>
+  </div>
+
+</ion-content>

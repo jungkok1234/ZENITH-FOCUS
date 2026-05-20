@@ -1,0 +1,61 @@
+<ion-content class="ion-padding">
+
+  <div class="login-container">
+    
+    <div class="logo-section">
+      <div class="logo">
+        <img src="assets/zenith_focus_app_logo.png" alt="Zenith Focus" class="logo-img">
+      </div>
+      <h1>Zenith Focus</h1>
+      <p>Reach Your Peak Productivity</p>
+    </div>
+
+    
+    <div class="form-section">
+      <ion-item class="custom-input" [class.error]="emailError">
+        <ion-icon name="mail-outline" slot="start" color="medium"></ion-icon>
+        <ion-input 
+          [(ngModel)]="email"
+          placeholder="Email address"
+          type="email"
+          (ionInput)="clearErrors()">
+        </ion-input>
+      </ion-item>
+      <div class="error-text" *ngIf="emailError">{{ emailError }}</div>
+
+      <ion-item class="custom-input" [class.error]="passwordError">
+        <ion-icon name="lock-closed-outline" slot="start" color="medium"></ion-icon>
+        <ion-input 
+          [(ngModel)]="password"
+          placeholder="Password"
+          [type]="showPassword ? 'text' : 'password'"
+          (ionInput)="clearErrors()">
+        </ion-input>
+        <ion-icon 
+          [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" 
+          slot="end" 
+          color="medium"
+          class="eye-icon"
+          (click)="togglePassword()">
+        </ion-icon>
+      </ion-item>
+      <div class="error-text" *ngIf="passwordError">{{ passwordError }}</div>
+
+      <div class="forgot-password">
+        <a (click)="forgotPassword()">Forgot Password?</a>
+      </div>
+
+     
+      <button class="login-btn" (click)="login()" [disabled]="isLoading">
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <span *ngIf="!isLoading">Log In</span>
+      </button>
+
+      
+      <button class="create-account-btn" (click)="goToCreateAccount()">
+        Create New Account
+      </button>
+    </div>
+  </div>
+
+</ion-content>
